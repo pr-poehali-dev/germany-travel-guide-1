@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/b8ba8007-fbd2-4afe-bf3d-14fd1e3ccb5a.jpg";
@@ -67,6 +68,7 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -131,10 +133,21 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="hidden lg:flex" style={{ flexDirection: "column", gap: 2 }}>
-            <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
-            <div style={{ width: 32, height: 5, background: "#F1BF00" }} />
-            <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
+          <div className="hidden lg:flex" style={{ alignItems: "center", gap: "1rem" }}>
+            <button onClick={() => navigate("/germany")} style={{
+              background: "rgba(232,184,0,0.1)", border: "1px solid rgba(232,184,0,0.3)",
+              cursor: "pointer", fontFamily: "'Oswald', sans-serif", fontSize: "0.72rem",
+              textTransform: "uppercase", letterSpacing: "0.12em", color: "#E8B800",
+              padding: "6px 14px", borderRadius: 50, transition: "all 0.2s",
+            }}
+              onMouseOver={(e) => { e.currentTarget.style.background = "rgba(232,184,0,0.2)"; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = "rgba(232,184,0,0.1)"; }}
+            >🇩🇪 Германия</button>
+            <div style={{ flexDirection: "column", gap: 2, display: "flex" }}>
+              <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
+              <div style={{ width: 32, height: 5, background: "#F1BF00" }} />
+              <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
+            </div>
           </div>
 
           <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", cursor: "pointer", color: "#fff" }}>
@@ -155,6 +168,11 @@ export default function Index() {
                 {item.label}
               </button>
             ))}
+            <button onClick={() => navigate("/germany")} style={{
+              textAlign: "left", background: "none", border: "none", cursor: "pointer",
+              padding: "0.75rem 0", fontFamily: "'Oswald', sans-serif", fontSize: "1rem",
+              textTransform: "uppercase", letterSpacing: "0.1em", color: "#E8B800",
+            }}>🇩🇪 → Германия</button>
           </div>
         )}
       </nav>
