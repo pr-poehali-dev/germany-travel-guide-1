@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
-const HERO_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/6d24a8d8-3389-422a-b41a-6dca37b113e0.jpg";
-const CARS_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/ef32a8e8-2ea3-4899-b0af-f90d633f7d0e.jpg";
-const CASTLE_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/cef7d00e-c6c8-49ea-9cd2-b71c129af6e4.jpg";
+const HERO_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/b8ba8007-fbd2-4afe-bf3d-14fd1e3ccb5a.jpg";
+const CARS_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/023a4a6c-f5ef-4242-86a4-40d14982b795.jpg";
+const GUELL_IMG = "https://cdn.poehali.dev/projects/c895d9f9-a3a4-4391-a4d4-ab54d0014aa6/files/75d3676d-0d0f-4b5a-aca7-e684e578a730.jpg";
 
 const NAV_ITEMS = [
   { id: "hero", label: "Главная" },
@@ -17,181 +17,47 @@ const NAV_ITEMS = [
 ];
 
 const CAR_BRANDS = [
-  { name: "BMW", tagline: "Баварские моторы", founded: "1916", logo: "🔵", color: "#1C69D4" },
-  { name: "Mercedes-Benz", tagline: "Nur das Beste", founded: "1926", logo: "⭐", color: "#C0C0C0" },
-  { name: "Porsche", tagline: "Спорт и престиж", founded: "1931", logo: "🏇", color: "#C7A13C" },
-  { name: "Audi", tagline: "Vorsprung durch Technik", founded: "1909", logo: "⭕", color: "#BB0A21" },
-  { name: "Volkswagen", tagline: "Народный автомобиль", founded: "1937", logo: "🚗", color: "#1B3A6B" },
-  { name: "Opel", tagline: "Инновации с 1899", founded: "1899", logo: "⚡", color: "#FFD700" },
+  { name: "Ferrari", tagline: "Scuderia Ferrari — страсть в металле", founded: "1939", logo: "🐴", color: "#FF2800" },
+  { name: "Lamborghini", tagline: "Automobili folli per persone folli", founded: "1963", logo: "🐂", color: "#FFC300" },
+  { name: "Maserati", tagline: "Luxury, sport and style", founded: "1914", logo: "🔱", color: "#4A90D9" },
+  { name: "Alfa Romeo", tagline: "La meccanica delle emozioni", founded: "1910", logo: "🍀", color: "#CC0000" },
+  { name: "Bugatti", tagline: "Art, Forme, Technique", founded: "1909", logo: "💎", color: "#6C8EBF" },
+  { name: "McLaren", tagline: "Pure McLaren — скорость без компромиссов", founded: "1963", logo: "🧡", color: "#FF8000" },
 ];
 
 const SIGHTS = [
-  {
-    name: "Бранденбургские ворота",
-    city: "Берлин",
-    desc: "Символ объединённой Германии, построен в 1791 году как Ворота мира",
-    icon: "🏛️",
-    rating: "4.9",
-    visitors: "2 млн/год",
-  },
-  {
-    name: "Замок Нойшванштайн",
-    city: "Бавария",
-    desc: "Сказочный замок Людвига II — прообраз замка из мультфильмов Disney",
-    icon: "🏰",
-    rating: "4.8",
-    visitors: "1.4 млн/год",
-  },
-  {
-    name: "Кёльнский собор",
-    city: "Кёльн",
-    desc: "Готический шедевр XIII века, объект Всемирного наследия ЮНЕСКО",
-    icon: "⛪",
-    rating: "4.8",
-    visitors: "6 млн/год",
-  },
-  {
-    name: "Рейнская долина",
-    city: "Рейн",
-    desc: "Величественные замки и виноградники вдоль берегов Рейна",
-    icon: "🏔️",
-    rating: "4.7",
-    visitors: "1 млн/год",
-  },
-  {
-    name: "Октоберфест",
-    city: "Мюнхен",
-    desc: "Крупнейший в мире фестиваль пива — ежегодно более 6 миллионов гостей",
-    icon: "🍺",
-    rating: "4.9",
-    visitors: "6 млн/год",
-  },
-  {
-    name: "Дрезденская галерея",
-    city: "Дрезден",
-    desc: "Один из старейших музеев Европы с полотнами Рафаэля и Рубенса",
-    icon: "🎨",
-    rating: "4.7",
-    visitors: "800 тыс/год",
-  },
+  { name: "Саграда Фамилия", area: "Эйшампле", desc: "Шедевр Антонио Гауди — базилика строится с 1882 года и до сих пор не завершена", icon: "⛪", rating: "4.9", visitors: "4.5 млн/год" },
+  { name: "Парк Гуэль", area: "Грасия", desc: "Сказочный парк с мозаикой, драконом и панорамой на весь город", icon: "🦎", rating: "4.7", visitors: "3 млн/год" },
+  { name: "Лас-Рамблас", area: "Готический квартал", desc: "Главный бульвар Барселоны — сердце города, уличные артисты и рынок Бокерия", icon: "🌺", rating: "4.6", visitors: "10 млн/год" },
+  { name: "Дом Батльо", area: "Пасео де Грасия", desc: "Дом-дракон Гауди — UNESCO Всемирное наследие, живая архитектура", icon: "🏠", rating: "4.8", visitors: "1 млн/год" },
+  { name: "Барселонета", area: "Приморский квартал", desc: "Знаменитый городской пляж — 4 км белого песка в двух шагах от центра", icon: "🏖️", rating: "4.7", visitors: "7 млн/год" },
+  { name: "Камп Ноу", area: "Лес-Кортс", desc: "Стадион ФК Барселона — крупнейший в Европе, 99 000 мест", icon: "⚽", rating: "4.8", visitors: "1.5 млн/год" },
 ];
 
 const HOTELS = [
-  {
-    name: "Adlon Kempinski",
-    city: "Берлин",
-    stars: 5,
-    rating: "9.4",
-    price: "от €350/ночь",
-    tag: "Легендарный",
-    tagColor: "bg-gold text-black",
-    desc: "Исторический отель у Бранденбургских ворот с вековой историей",
-  },
-  {
-    name: "Bayerischer Hof",
-    city: "Мюнхен",
-    stars: 5,
-    rating: "9.2",
-    price: "от €280/ночь",
-    tag: "Лучший в городе",
-    tagColor: "bg-red-de text-white",
-    desc: "Гранд-отель в центре Мюнхена с видом на старый город",
-  },
-  {
-    name: "Hotel Atlantic Hamburg",
-    city: "Гамбург",
-    stars: 5,
-    rating: "9.1",
-    price: "от €240/ночь",
-    tag: "Исторический",
-    tagColor: "bg-gold text-black",
-    desc: "Роскошный отель 1909 года на берегу озера Альстер",
-  },
-  {
-    name: "Breidenbacher Hof",
-    city: "Дюссельдорф",
-    stars: 5,
-    rating: "9.3",
-    price: "от €320/ночь",
-    tag: "Топ-рейтинг",
-    tagColor: "bg-red-de text-white",
-    desc: "Элегантный отель в модном квартале Дюссельдорфа",
-  },
+  { name: "Hotel Arts Barcelona", area: "Барселонета", stars: 5, rating: "9.4", price: "от €380/ночь", tag: "Вид на море", tagColor: "#E63946", desc: "Небоскрёб на берегу моря, терраса с бассейном и видом на Средиземноморье" },
+  { name: "Mandarin Oriental", area: "Пасео де Грасия", stars: 5, rating: "9.5", price: "от €450/ночь", tag: "Топ рейтинг", tagColor: "#D4830A", desc: "Легендарный отель в сердце золотого квадрата, ресторан со звездой Мишлен" },
+  { name: "W Barcelona", area: "Порт Олимпик", stars: 5, rating: "9.2", price: "от €320/ночь", tag: "Дизайн", tagColor: "#E63946", desc: "Iconic sail-shaped hotel — бескрайний вид на море и бары на крыше" },
+  { name: "Casa Camper", area: "Готический квартал", stars: 4, rating: "9.1", price: "от €220/ночь", tag: "Бутик", tagColor: "#D4830A", desc: "Дизайнерский отель бренда Camper прямо в историческом центре города" },
 ];
 
 const RESTAURANTS = [
-  {
-    name: "Lorenz Adlon Esszimmer",
-    city: "Берлин",
-    cuisine: "Haute Cuisine",
-    stars: "⭐⭐",
-    rating: "9.6",
-    price: "€€€€",
-    desc: "2 звезды Мишлен, авторская немецкая кухня с потрясающим видом",
-    icon: "🍽️",
-  },
-  {
-    name: "Hofbräuhaus",
-    city: "Мюнхен",
-    cuisine: "Баварская",
-    stars: "🏆",
-    rating: "9.0",
-    price: "€€",
-    desc: "Легендарное пивное заведение 1589 года — must visit в Мюнхене",
-    icon: "🍺",
-  },
-  {
-    name: "Tim Raue",
-    city: "Берлин",
-    cuisine: "Азиатско-немецкая",
-    stars: "⭐⭐",
-    rating: "9.5",
-    price: "€€€€",
-    desc: "2 звезды Мишлен, дерзкое переосмысление немецкой кухни",
-    icon: "🥢",
-  },
-  {
-    name: "Restaurant Schwarzwaldstube",
-    city: "Бретен",
-    cuisine: "Баварская",
-    stars: "⭐⭐⭐",
-    rating: "9.8",
-    price: "€€€€",
-    desc: "3 звезды Мишлен — лучший ресторан Германии по версии Мишлен",
-    icon: "🌟",
-  },
+  { name: "Tickets", area: "Сант-Антони", cuisine: "Авангардные тапас", stars: "⭐", rating: "9.7", price: "€€€", desc: "Ресторан братьев Адриа — звезда Мишлен, авангардная кухня в формате цирка", icon: "🎪" },
+  { name: "Disfrutar", area: "Эйшампле", cuisine: "Haute Cuisine", stars: "⭐⭐⭐", rating: "9.9", price: "€€€€", desc: "3 звезды Мишлен — лучший ресторан мира 2023 года по версии The World's 50 Best", icon: "🌟" },
+  { name: "La Boqueria Bar", area: "Рамблас", cuisine: "Каталонская", stars: "🏆", rating: "9.0", price: "€€", desc: "Легендарный рыбный бар на рынке Бокерия — свежайшие морепродукты с 1836 года", icon: "🦞" },
+  { name: "Cinc Sentits", area: "Эйшампле", cuisine: "Современная каталонская", stars: "⭐⭐", rating: "9.6", price: "€€€€", desc: "2 звезды Мишлен, «Пять чувств» — путешествие сквозь вкусы Каталонии", icon: "🍷" },
 ];
 
 const HISTORY_FACTS = [
-  {
-    year: "962",
-    title: "Священная Римская Империя",
-    desc: "Основание Священной Римской Империи германской нации — первого государственного объединения немецких земель",
-    icon: "👑",
-  },
-  {
-    year: "1455",
-    title: "Печатный станок Гутенберга",
-    desc: "Иоганн Гутенберг изобретает книгопечатание, навсегда изменив мировую цивилизацию",
-    icon: "📚",
-  },
-  {
-    year: "1871",
-    title: "Объединение Германии",
-    desc: "Бисмарк объединяет германские государства в единую Германскую империю",
-    icon: "🦅",
-  },
-  {
-    year: "1989",
-    title: "Падение Берлинской стены",
-    desc: "9 ноября 1989 года — исторический день объединения Восточной и Западной Германии",
-    icon: "🧱",
-  },
+  { year: "15 до н.э.", title: "Основание Барсино", desc: "Римский emperor Август основал колонию Barcino — будущую Барселону на берегу Средиземного моря", icon: "🏛️" },
+  { year: "988", title: "Столица Каталонии", desc: "Барселона становится столицей Каталонского графства — начало каталонской идентичности", icon: "🦅" },
+  { year: "1888", title: "Всемирная выставка", desc: "Барселона принимает Всемирную выставку — толчок к грандиозной реконструкции города", icon: "🏗️" },
+  { year: "1992", title: "Олимпийские игры", desc: "Олимпиада-1992 превратила Барселону в один из главных туристических городов планеты", icon: "🏅" },
 ];
 
 function StarRating({ count }: { count: number }) {
   return (
-    <span className="star-rating">
+    <span style={{ color: "#F4A261", fontSize: "0.9rem", letterSpacing: "0.05em" }}>
       {"★".repeat(count)}{"☆".repeat(5 - count)}
     </span>
   );
@@ -224,62 +90,68 @@ export default function Index() {
     setMenuOpen(false);
   };
 
+  const hoverIn = (el: HTMLDivElement, y = -6, shadow = "rgba(244,162,97,0.15)") => {
+    el.style.transform = `translateY(${y}px)`;
+    el.style.boxShadow = `0 20px 60px ${shadow}`;
+  };
+  const hoverOut = (el: HTMLDivElement) => {
+    el.style.transform = "";
+    el.style.boxShadow = "";
+  };
+
   return (
-    <div className="min-h-screen bg-dark text-light overflow-x-hidden">
+    <div style={{ background: "#0D0A08", color: "#F5EFE6", fontFamily: "'IBM Plex Sans', sans-serif", overflowX: "hidden" }}>
 
       {/* NAVBAR */}
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-black/95 backdrop-blur-md border-b border-white/10" : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <button
-            onClick={() => scrollTo("hero")}
-            className="font-display text-2xl font-bold tracking-widest uppercase"
-          >
-            <span className="text-white">DEUTSCH</span>
-            <span className="text-gold">LAND</span>
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        background: scrolled ? "rgba(13,10,8,0.97)" : "transparent",
+        borderBottom: scrolled ? "1px solid rgba(244,162,97,0.12)" : "none",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        transition: "all 0.3s ease",
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+          <button onClick={() => scrollTo("hero")} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            <span style={{ color: "#fff" }}>BARCE</span>
+            <span style={{ color: "#E63946" }}>LONA</span>
           </button>
 
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex" style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
             {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className={`nav-link font-body text-sm tracking-wide uppercase transition-colors ${
-                  activeSection === item.id ? "text-gold active" : "text-white/70 hover:text-white"
-                }`}
-              >
+              <button key={item.id} onClick={() => scrollTo(item.id)} style={{
+                background: "none", border: "none", cursor: "pointer",
+                fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.78rem",
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                color: activeSection === item.id ? "#F4A261" : "rgba(255,255,255,0.65)",
+                transition: "color 0.2s", padding: "4px 0",
+                borderBottom: activeSection === item.id ? "1px solid #F4A261" : "1px solid transparent",
+              }}>
                 {item.label}
               </button>
             ))}
           </div>
 
-          <div className="hidden lg:flex flex-col gap-0.5">
-            <div className="w-8 h-1 bg-black border border-white/20"></div>
-            <div className="w-8 h-1 bg-red-de"></div>
-            <div className="w-8 h-1 bg-gold"></div>
+          <div className="hidden lg:flex" style={{ flexDirection: "column", gap: 2 }}>
+            <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
+            <div style={{ width: 32, height: 5, background: "#F1BF00" }} />
+            <div style={{ width: 32, height: 5, background: "#C60B1E" }} />
           </div>
 
-          <button
-            className="lg:hidden text-white"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+          <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", cursor: "pointer", color: "#fff" }}>
             <Icon name={menuOpen ? "X" : "Menu"} size={24} />
           </button>
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden bg-black/98 border-t border-white/10 px-6 py-4 flex flex-col gap-3">
+          <div style={{ background: "rgba(13,10,8,0.99)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "1rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
             {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className={`text-left font-display text-lg uppercase tracking-wider py-2 border-b border-white/10 last:border-0 ${
-                  activeSection === item.id ? "text-gold" : "text-white/80"
-                }`}
-              >
+              <button key={item.id} onClick={() => scrollTo(item.id)} style={{
+                textAlign: "left", background: "none", border: "none", cursor: "pointer",
+                borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "0.75rem 0",
+                fontFamily: "'Oswald', sans-serif", fontSize: "1.1rem",
+                textTransform: "uppercase", letterSpacing: "0.1em",
+                color: activeSection === item.id ? "#F4A261" : "rgba(255,255,255,0.8)",
+              }}>
                 {item.label}
               </button>
             ))}
@@ -288,62 +160,73 @@ export default function Index() {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
-        <img
-          src={HERO_IMG}
-          alt="Бранденбургские ворота"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="hero-mask absolute inset-0" />
-
-        <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-black" />
-          <div className="flex-1 bg-red-de" />
-          <div className="flex-1 bg-gold" />
+      <section id="hero" style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
+        <img src={HERO_IMG} alt="Барселона" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(13,10,8,0.2) 0%, rgba(13,10,8,0.65) 50%, rgba(13,10,8,1) 100%)" }} />
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 6, display: "flex", flexDirection: "column" }}>
+          <div style={{ flex: 1, background: "#C60B1E" }} />
+          <div style={{ flex: 1, background: "#F1BF00" }} />
+          <div style={{ flex: 1, background: "#C60B1E" }} />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pb-24 w-full">
-          <div className="max-w-3xl animate-fade-up">
-            <p className="brand-pill mb-6 inline-flex">
-              <span>🇩🇪</span> Официальный туристический гид
-            </p>
-            <h1
-              className="section-title text-white mb-6"
-              style={{ fontSize: "clamp(3.5rem, 10vw, 8rem)" }}
-            >
-              ОТКРОЙ<br />
-              <span className="text-gold">ГЕРМАНИЮ</span>
+        <div style={{ position: "relative", maxWidth: 1280, margin: "0 auto", padding: "0 2rem 6rem", width: "100%" }}>
+          <div style={{ maxWidth: 700 }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              padding: "0.4rem 1.2rem", border: "1px solid rgba(230,57,70,0.35)",
+              borderRadius: 50, fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.78rem",
+              letterSpacing: "0.1em", textTransform: "uppercase", color: "#E63946",
+              background: "rgba(230,57,70,0.07)", marginBottom: "1.5rem",
+            }}>
+              🇪🇸 Туристический гид — Каталония, Испания
+            </span>
+
+            <h1 style={{
+              fontFamily: "'Oswald', sans-serif", fontWeight: 700,
+              fontSize: "clamp(3.5rem, 11vw, 9rem)", lineHeight: 0.9,
+              textTransform: "uppercase", letterSpacing: "-0.02em",
+              color: "#fff", marginBottom: "1.5rem",
+            }}>
+              ОТКРОЙТЕ<br />
+              <span style={{ color: "#F4A261" }}>БАРСЕЛОНУ</span>
             </h1>
-            <p className="font-body text-lg text-white/70 mb-10 max-w-xl leading-relaxed">
-              Страна инженерного гения, средневековых замков, мировых автомобильных брендов
-              и богатейшей культуры. Добро пожаловать в самую посещаемую страну Европы.
+
+            <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "1.1rem", color: "rgba(255,255,255,0.65)", marginBottom: "2.5rem", maxWidth: 520, lineHeight: 1.7 }}>
+              Город Гауди, фламенко и солнечных пляжей. Столица Каталонии, где встречаются
+              средневековая история, авангардная архитектура и бесконечное средиземноморское лето.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => scrollTo("sights")}
-                className="bg-gold text-black font-display font-bold uppercase tracking-wider px-8 py-4 text-sm hover:brightness-110 transition-all duration-200"
-              >
-                Исследовать →
-              </button>
-              <button
-                onClick={() => scrollTo("history")}
-                className="border border-white/30 text-white font-display uppercase tracking-wider px-8 py-4 text-sm hover:border-gold hover:text-gold transition-all duration-200"
-              >
-                История страны
-              </button>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+              <button onClick={() => scrollTo("sights")} style={{
+                background: "#E63946", color: "#fff", border: "none", cursor: "pointer",
+                fontFamily: "'Oswald', sans-serif", fontWeight: 700, textTransform: "uppercase",
+                letterSpacing: "0.1em", padding: "1rem 2rem", fontSize: "0.85rem", transition: "all 0.2s",
+              }}
+                onMouseOver={(e) => (e.currentTarget.style.background = "#c52434")}
+                onMouseOut={(e) => (e.currentTarget.style.background = "#E63946")}
+              >Исследовать →</button>
+              <button onClick={() => scrollTo("history")} style={{
+                background: "transparent", color: "#fff",
+                border: "1px solid rgba(255,255,255,0.3)", cursor: "pointer",
+                fontFamily: "'Oswald', sans-serif", textTransform: "uppercase",
+                letterSpacing: "0.1em", padding: "1rem 2rem", fontSize: "0.85rem", transition: "all 0.2s",
+              }}
+                onMouseOver={(e) => { e.currentTarget.style.borderColor = "#F4A261"; e.currentTarget.style.color = "#F4A261"; }}
+                onMouseOut={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; e.currentTarget.style.color = "#fff"; }}
+              >История города</button>
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10">
+          <div style={{ marginTop: "4rem", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.07)" }}>
             {[
-              { label: "Туристов в год", value: "39.6 млн" },
-              { label: "Население", value: "84.4 млн" },
-              { label: "Звёзд Мишлен", value: "316" },
-              { label: "Объектов ЮНЕСКО", value: "52" },
+              { label: "Туристов в год", value: "32 млн" },
+              { label: "Население", value: "1.66 млн" },
+              { label: "Звёзд Мишлен", value: "24" },
+              { label: "Объектов ЮНЕСКО", value: "9" },
             ].map((s) => (
-              <div key={s.label} className="bg-black/70 backdrop-blur px-6 py-5">
-                <div className="font-display text-2xl font-bold text-gold">{s.value}</div>
-                <div className="font-body text-xs text-white/50 uppercase tracking-wider mt-1">{s.label}</div>
+              <div key={s.label} style={{ background: "rgba(13,10,8,0.8)", backdropFilter: "blur(8px)", padding: "1.25rem 1.5rem" }}>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: "#F4A261" }}>{s.value}</div>
+                <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em", marginTop: 4 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -351,57 +234,37 @@ export default function Index() {
       </section>
 
       {/* ===== HISTORY ===== */}
-      <section id="history" className="py-28 bg-dark">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-end gap-6 mb-16">
-            <div>
-              <p className="font-body text-gold text-sm uppercase tracking-widest mb-3">С 962 года</p>
-              <h2 className="section-title text-white">
-                ИСТОРИЯ<br /><span className="text-gold">ГЕРМАНИИ</span>
-              </h2>
-            </div>
-            <div className="hidden md:block flex-1 h-px bg-white/10 mb-4" />
+      <section id="history" style={{ padding: "7rem 0", background: "#0D0A08" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#E63946", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>С 15 года до н.э.</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            ИСТОРИЯ<br /><span style={{ color: "#F4A261" }}>БАРСЕЛОНЫ</span>
+          </h2>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "3rem" }}>
+            {[
+              { border: "#E63946", title: "Каталонская душа", p1: "Барселона — не просто город. Это столица независимого духа Каталонии. Здесь говорят на каталанском, чтят свои традиции и гордятся уникальной идентичностью, которую не смогли сломить ни века господства Кастилии, ни режим Франко.", p2: "Архитектура Антонио Гауди стала символом не только города, но и всего каталонского модернизма — живого, органического, неповторимого." },
+              { border: "#F4A261", title: "Современная Барселона", p1: "После Олимпиады 1992 года Барселона превратилась в один из самых модных городов мира. Технологический хаб, центр моды, гастрономическая столица Средиземноморья.", p2: "Сегодня Барселона входит в топ-5 самых посещаемых городов Европы, принимая ежегодно более 32 миллионов туристов." },
+            ].map((c) => (
+              <div key={c.title} style={{ background: "#161210", padding: "2rem", borderLeft: `4px solid ${c.border}` }}>
+                <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.4rem", color: "#fff", textTransform: "uppercase", marginBottom: "1rem" }}>{c.title}</h3>
+                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "rgba(255,255,255,0.5)", lineHeight: 1.8, marginBottom: "1rem" }}>{c.p1}</p>
+                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "rgba(255,255,255,0.5)", lineHeight: 1.8 }}>{c.p2}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <div className="bg-gray1 p-8 border-l-4 border-gold">
-              <h3 className="font-display text-2xl text-white mb-4 uppercase">Культура и наследие</h3>
-              <p className="font-body text-white/60 leading-relaxed mb-4">
-                Германия — страна Бетховена, Баха и Брамса. Страна Гёте, Шиллера и Канта.
-                Здесь родились теория относительности, квантовая физика и первый автомобиль.
-              </p>
-              <p className="font-body text-white/60 leading-relaxed">
-                Немецкая культура оказала колоссальное влияние на весь мир — от философии
-                до инженерии, от музыки до архитектуры Баухауса.
-              </p>
-            </div>
-            <div className="bg-gray1 p-8 border-l-4 border-red-de">
-              <h3 className="font-display text-2xl text-white mb-4 uppercase">Современная Германия</h3>
-              <p className="font-body text-white/60 leading-relaxed mb-4">
-                Сегодня Германия — крупнейшая экономика Европы и третья в мире.
-                Страна является мировым лидером в машиностроении, химической промышленности
-                и возобновляемой энергетике.
-              </p>
-              <p className="font-body text-white/60 leading-relaxed">
-                16 федеральных земель, каждая со своим характером и традициями —
-                от баварских Альп до берлинского авангарда.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1.5rem" }}>
             {HISTORY_FACTS.map((f, i) => (
-              <div key={f.year} className="relative bg-gray2 p-6 card-hover group">
-                <div
-                  className="absolute top-0 left-0 right-0 h-1"
-                  style={{ background: i % 2 === 0 ? "var(--gold)" : "var(--red)" }}
-                />
-                <div className="text-4xl mb-4">{f.icon}</div>
-                <div className="font-display text-3xl font-bold text-gold mb-2">{f.year}</div>
-                <h4 className="font-display text-lg text-white uppercase mb-3 group-hover:text-gold transition-colors">
-                  {f.title}
-                </h4>
-                <p className="font-body text-sm text-white/50 leading-relaxed">{f.desc}</p>
+              <div key={f.year} style={{ position: "relative", background: "#1A1410", padding: "1.5rem", cursor: "default", transition: "transform 0.3s, box-shadow 0.3s" }}
+                onMouseOver={(e) => hoverIn(e.currentTarget as HTMLDivElement, -6, "rgba(230,57,70,0.12)")}
+                onMouseOut={(e) => hoverOut(e.currentTarget as HTMLDivElement)}
+              >
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: i % 2 === 0 ? "#E63946" : "#F4A261" }} />
+                <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{f.icon}</div>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", fontWeight: 700, color: "#F4A261", marginBottom: "0.5rem" }}>{f.year}</div>
+                <h4 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1rem", color: "#fff", textTransform: "uppercase", marginBottom: "0.75rem" }}>{f.title}</h4>
+                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.7 }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -409,57 +272,43 @@ export default function Index() {
       </section>
 
       {/* ===== CARS ===== */}
-      <section id="cars" className="py-28 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src={CARS_IMG} alt="Немецкие автомобили" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
+      <section id="cars" style={{ padding: "7rem 0", background: "#0A0806", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.18 }}>
+          <img src={CARS_IMG} alt="Суперкары" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, #0A0806 30%, rgba(10,8,6,0.5))" }} />
         </div>
+        <div style={{ position: "relative", maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#F4A261", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>Суперкары Средиземноморья</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            ЛЕГЕНДАРНЫЕ<br /><span style={{ color: "#E63946" }}>АВТОБРЕНДЫ</span>
+          </h2>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <p className="font-body text-red-de text-sm uppercase tracking-widest mb-3">Made in Germany</p>
-            <h2 className="section-title text-white">
-              НЕМЕЦКИЕ<br /><span className="text-gold">АВТОБРЕНДЫ</span>
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", marginBottom: "3rem" }}>
             {CAR_BRANDS.map((brand) => (
-              <div
-                key={brand.name}
-                className="bg-gray1/80 backdrop-blur p-6 border border-white/10 card-hover group cursor-pointer"
+              <div key={brand.name} style={{ background: "rgba(26,20,16,0.85)", backdropFilter: "blur(8px)", padding: "1.5rem", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer", transition: "transform 0.3s, box-shadow 0.3s" }}
+                onMouseOver={(e) => hoverIn(e.currentTarget as HTMLDivElement, -6, brand.color + "33")}
+                onMouseOut={(e) => hoverOut(e.currentTarget as HTMLDivElement)}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-5xl">{brand.logo}</span>
-                  <span className="font-body text-xs text-white/30 uppercase tracking-widest">
-                    с {brand.founded}
-                  </span>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
+                  <span style={{ fontSize: "3rem" }}>{brand.logo}</span>
+                  <span style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.22)", textTransform: "uppercase", letterSpacing: "0.1em" }}>с {brand.founded}</span>
                 </div>
-                <h3
-                  className="font-display text-2xl font-bold uppercase mb-2 transition-colors"
-                  style={{ color: brand.color }}
-                >
-                  {brand.name}
-                </h3>
-                <p className="font-body text-sm text-white/50 italic">{brand.tagline}</p>
-                <div
-                  className="mt-4 h-0.5 w-0 group-hover:w-full transition-all duration-500"
-                  style={{ background: brand.color }}
-                />
+                <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", fontWeight: 700, textTransform: "uppercase", color: brand.color, marginBottom: "0.4rem" }}>{brand.name}</h3>
+                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontStyle: "italic", fontSize: "0.82rem", color: "rgba(255,255,255,0.38)" }}>{brand.tagline}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-gold/10 border border-gold/30 p-8">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div style={{ background: "rgba(244,162,97,0.07)", border: "1px solid rgba(244,162,97,0.18)", padding: "2rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "2rem", textAlign: "center" }}>
               {[
-                { val: "#1", label: "Страна по экспорту автомобилей в Европе" },
-                { val: "5.6 млн", label: "Автомобилей произведено в 2023 году" },
-                { val: "€227 млрд", label: "Выручка автопромышленности в год" },
+                { val: "2-е", label: "Место Барселоны по числу суперкаров на улицах Испании" },
+                { val: "€8 млрд", label: "Оборот авторынка Каталонии в год" },
+                { val: "120+", label: "Дилерских центров премиум-класса в городе" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="number-big mb-2">{s.val}</div>
-                  <div className="font-body text-sm text-white/50 uppercase tracking-wide">{s.label}</div>
+                  <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: 700, color: "#F4A261", lineHeight: 1, marginBottom: "0.5rem" }}>{s.val}</div>
+                  <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.42)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -468,47 +317,36 @@ export default function Index() {
       </section>
 
       {/* ===== SIGHTS ===== */}
-      <section id="sights" className="py-28 bg-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <img src={CASTLE_IMG} alt="Нойшванштайн" className="w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: "var(--dark)" }} />
+      <section id="sights" style={{ padding: "7rem 0", background: "#0D0A08", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.07 }}>
+          <img src={GUELL_IMG} alt="Парк Гуэль" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div style={{ position: "absolute", inset: 0, background: "#0D0A08" }} />
         </div>
+        <div style={{ position: "relative", maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#F4A261", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>Must See</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            ГЛАВНЫЕ<br /><span style={{ color: "#E63946" }}>ДОСТОПРИМЕЧАТЕЛЬНОСТИ</span>
+          </h2>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-end gap-6 mb-16">
-            <div>
-              <p className="font-body text-gold text-sm uppercase tracking-widest mb-3">Must See</p>
-              <h2 className="section-title text-white">
-                ДОСТОПРИМЕЧАТЕЛЬНОСТИ
-              </h2>
-            </div>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
             {SIGHTS.map((s) => (
-              <div
-                key={s.name}
-                className="bg-gray1 border border-white/10 card-hover group overflow-hidden cursor-pointer"
+              <div key={s.name} style={{ background: "#161210", border: "1px solid rgba(255,255,255,0.06)", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s, box-shadow 0.3s" }}
+                onMouseOver={(e) => { hoverIn(e.currentTarget as HTMLDivElement, -6, "rgba(244,162,97,0.12)"); const bar = (e.currentTarget as HTMLDivElement).querySelector(".sight-bar") as HTMLElement; if (bar) bar.style.width = "100%"; }}
+                onMouseOut={(e) => { hoverOut(e.currentTarget as HTMLDivElement); const bar = (e.currentTarget as HTMLDivElement).querySelector(".sight-bar") as HTMLElement; if (bar) bar.style.width = "0"; }}
               >
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <span className="text-5xl">{s.icon}</span>
-                    <div className="text-right">
-                      <div className="font-display text-2xl text-gold font-bold">★ {s.rating}</div>
-                      <div className="font-body text-xs text-white/30">{s.visitors}</div>
+                <div style={{ padding: "1.5rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
+                    <span style={{ fontSize: "3rem" }}>{s.icon}</span>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", color: "#F4A261", fontWeight: 700 }}>★ {s.rating}</div>
+                      <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.28)" }}>{s.visitors}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-body text-xs text-red-de uppercase tracking-widest">
-                      📍 {s.city}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-xl text-white uppercase group-hover:text-gold transition-colors mb-3">
-                    {s.name}
-                  </h3>
-                  <p className="font-body text-sm text-white/50 leading-relaxed">{s.desc}</p>
+                  <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", color: "#E63946", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "0.4rem" }}>📍 {s.area}</p>
+                  <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.2rem", color: "#fff", textTransform: "uppercase", marginBottom: "0.75rem" }}>{s.name}</h3>
+                  <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.84rem", color: "rgba(255,255,255,0.43)", lineHeight: 1.7 }}>{s.desc}</p>
                 </div>
-                <div className="h-1 w-0 group-hover:w-full bg-gold transition-all duration-500" />
+                <div className="sight-bar" style={{ height: 3, width: 0, background: "#F4A261", transition: "width 0.5s ease" }} />
               </div>
             ))}
           </div>
@@ -516,47 +354,38 @@ export default function Index() {
       </section>
 
       {/* ===== HOTELS ===== */}
-      <section id="hotels" className="py-28 bg-black">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <p className="font-body text-gold text-sm uppercase tracking-widest mb-3">5 звёзд</p>
-            <h2 className="section-title text-white">
-              ЛУЧШИЕ<br /><span className="text-gold">ОТЕЛИ</span>
-            </h2>
-          </div>
+      <section id="hotels" style={{ padding: "7rem 0", background: "#0A0806" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#F4A261", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>Лучшие 5 звёзд</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            ОТЕЛИ<br /><span style={{ color: "#F4A261" }}>БАРСЕЛОНЫ</span>
+          </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
             {HOTELS.map((h) => (
-              <div
-                key={h.name}
-                className="bg-gray1 p-7 border border-white/10 card-hover group cursor-pointer"
+              <div key={h.name} style={{ background: "#161210", padding: "1.75rem", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer", transition: "transform 0.3s, box-shadow 0.3s" }}
+                onMouseOver={(e) => hoverIn(e.currentTarget as HTMLDivElement)}
+                onMouseOut={(e) => hoverOut(e.currentTarget as HTMLDivElement)}
               >
-                <div className="flex items-start justify-between mb-4">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
                   <div>
-                    <span
-                      className={`inline-block text-xs font-display uppercase tracking-widest px-3 py-1 mb-3 ${h.tagColor}`}
-                    >
-                      {h.tag}
-                    </span>
-                    <h3 className="font-display text-xl text-white uppercase group-hover:text-gold transition-colors">
-                      {h.name}
-                    </h3>
-                    <p className="font-body text-sm text-white/40 mt-1">📍 {h.city}</p>
+                    <span style={{ display: "inline-block", background: h.tagColor, color: "#fff", fontSize: "0.7rem", fontFamily: "'Oswald', sans-serif", textTransform: "uppercase", letterSpacing: "0.1em", padding: "3px 10px", marginBottom: "0.6rem" }}>{h.tag}</span>
+                    <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.25rem", color: "#fff", textTransform: "uppercase" }}>{h.name}</h3>
+                    <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)", marginTop: 4 }}>📍 {h.area}</p>
                   </div>
-                  <div className="text-right">
-                    <div className="font-display text-3xl text-gold font-bold">{h.rating}</div>
-                    <div className="font-body text-xs text-white/30">из 10</div>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "2rem", color: "#F4A261", fontWeight: 700, lineHeight: 1 }}>{h.rating}</div>
+                    <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.68rem", color: "rgba(255,255,255,0.27)" }}>из 10</div>
                   </div>
                 </div>
-                <div className="mb-4">
-                  <StarRating count={h.stars} />
-                </div>
-                <p className="font-body text-sm text-white/50 leading-relaxed mb-4">{h.desc}</p>
-                <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="font-display text-gold text-lg">{h.price}</span>
-                  <button className="font-body text-sm text-white/50 hover:text-gold transition-colors uppercase tracking-wide">
-                    Забронировать →
-                  </button>
+                <div style={{ marginBottom: "0.75rem" }}><StarRating count={h.stars} /></div>
+                <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.84rem", color: "rgba(255,255,255,0.42)", lineHeight: 1.7, marginBottom: "1.25rem" }}>{h.desc}</p>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1rem" }}>
+                  <span style={{ fontFamily: "'Oswald', sans-serif", color: "#F4A261", fontSize: "1.1rem" }}>{h.price}</span>
+                  <button style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.38)", textTransform: "uppercase", letterSpacing: "0.1em", transition: "color 0.2s" }}
+                    onMouseOver={(e) => (e.currentTarget.style.color = "#F4A261")}
+                    onMouseOut={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.38)")}
+                  >Забронировать →</button>
                 </div>
               </div>
             ))}
@@ -565,40 +394,36 @@ export default function Index() {
       </section>
 
       {/* ===== RESTAURANTS ===== */}
-      <section id="restaurants" className="py-28 bg-dark">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <p className="font-body text-red-de text-sm uppercase tracking-widest mb-3">Guten Appetit</p>
-            <h2 className="section-title text-white">
-              РЕСТОРАНЫ<br /><span className="text-gold">ГЕРМАНИИ</span>
-            </h2>
-          </div>
+      <section id="restaurants" style={{ padding: "7rem 0", background: "#0D0A08" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#E63946", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>¡Buen provecho!</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            РЕСТОРАНЫ<br /><span style={{ color: "#F4A261" }}>И ГАСТРОНОМИЯ</span>
+          </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }}>
             {RESTAURANTS.map((r) => (
-              <div
-                key={r.name}
-                className="bg-gray2 p-7 border border-white/10 card-hover group cursor-pointer flex gap-5"
+              <div key={r.name} style={{ background: "#1A1410", padding: "1.75rem", border: "1px solid rgba(255,255,255,0.06)", display: "flex", gap: "1.25rem", cursor: "pointer", transition: "transform 0.3s, box-shadow 0.3s" }}
+                onMouseOver={(e) => hoverIn(e.currentTarget as HTMLDivElement, -6, "rgba(230,57,70,0.1)")}
+                onMouseOut={(e) => hoverOut(e.currentTarget as HTMLDivElement)}
               >
-                <div className="text-5xl flex-shrink-0">{r.icon}</div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-2">
+                <div style={{ fontSize: "3rem", flexShrink: 0 }}>{r.icon}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.4rem" }}>
                     <div>
-                      <h3 className="font-display text-xl text-white uppercase group-hover:text-gold transition-colors">
-                        {r.name}
-                      </h3>
-                      <p className="font-body text-xs text-white/40 mt-1">📍 {r.city} · {r.cuisine}</p>
+                      <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.15rem", color: "#fff", textTransform: "uppercase" }}>{r.name}</h3>
+                      <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginTop: 3 }}>📍 {r.area} · {r.cuisine}</p>
                     </div>
-                    <div className="text-right flex-shrink-0 ml-4">
-                      <div className="font-display text-2xl text-gold font-bold">{r.rating}</div>
-                      <div className="font-body text-xs text-white/30">/10</div>
+                    <div style={{ textAlign: "right", flexShrink: 0, marginLeft: "1rem" }}>
+                      <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.5rem", color: "#F4A261", fontWeight: 700, lineHeight: 1 }}>{r.rating}</div>
+                      <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.65rem", color: "rgba(255,255,255,0.28)" }}>/10</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-sm">{r.stars}</span>
-                    <span className="font-body text-xs text-white/30 uppercase tracking-wider">{r.price}</span>
+                  <div style={{ display: "flex", gap: "0.75rem", marginBottom: "0.6rem", alignItems: "center" }}>
+                    <span style={{ fontSize: "0.85rem" }}>{r.stars}</span>
+                    <span style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.26)", textTransform: "uppercase", letterSpacing: "0.1em" }}>{r.price}</span>
                   </div>
-                  <p className="font-body text-sm text-white/50 leading-relaxed">{r.desc}</p>
+                  <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.84rem", color: "rgba(255,255,255,0.42)", lineHeight: 1.7 }}>{r.desc}</p>
                 </div>
               </div>
             ))}
@@ -607,62 +432,53 @@ export default function Index() {
       </section>
 
       {/* ===== STATS ===== */}
-      <section id="stats" className="py-28 bg-black relative overflow-hidden">
-        <div
-          className="absolute top-0 left-0 w-full h-2"
-          style={{ background: "linear-gradient(90deg, #000 33%, #CC0000 33%, #CC0000 66%, #E8B800 66%)" }}
-        />
+      <section id="stats" style={{ padding: "7rem 0", background: "#0A0806", position: "relative" }}>
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "linear-gradient(90deg, #C60B1E 33%, #F1BF00 33%, #F1BF00 66%, #C60B1E 66%)" }} />
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#F4A261", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>Факты и цифры</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            БАРСЕЛОНА<br /><span style={{ color: "#F4A261" }}>В ЦИФРАХ</span>
+          </h2>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <p className="font-body text-gold text-sm uppercase tracking-widest mb-3">Факты и цифры</p>
-            <h2 className="section-title text-white">
-              ГЕРМАНИЯ<br /><span className="text-gold">В ЦИФРАХ</span>
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(255,255,255,0.05)", marginBottom: "3rem" }}>
             {[
-              { val: "39.6 млн", label: "Иностранных туристов в год", icon: "✈️", sub: "+12% к 2022" },
-              { val: "84.4 млн", label: "Жителей страны", icon: "👥", sub: "3-е место в ЕС" },
-              { val: "№7", label: "В мировом рейтинге туризма", icon: "🏆", sub: "по версии UNWTO" },
-              { val: "€43 млрд", label: "Доходы от туризма в год", icon: "💰", sub: "2023 год" },
-              { val: "16", label: "Федеральных земель", icon: "🗺️", sub: "каждая уникальна" },
-              { val: "4-я", label: "Экономика мира", icon: "📈", sub: "ВВП $4.4 трлн" },
-              { val: "316", label: "Ресторанов со звездой Мишлен", icon: "⭐", sub: "2-е место в Европе" },
-              { val: "52", label: "Объекта Всемирного наследия", icon: "🏛️", sub: "по версии ЮНЕСКО" },
+              { val: "32 млн", label: "Туристов ежегодно", icon: "✈️", sub: "+8% к прошлому году" },
+              { val: "1.66 млн", label: "Жителей города", icon: "👥", sub: "5-й город ЕС" },
+              { val: "№4", label: "В рейтинге городов Европы", icon: "🏆", sub: "Euromonitor 2023" },
+              { val: "€16 млрд", label: "Доходы от туризма", icon: "💰", sub: "рекорд 2023 года" },
+              { val: "4.5 км²", label: "Готический квартал", icon: "🏛️", sub: "старейший район" },
+              { val: "24", label: "Звёзды Мишлен", icon: "⭐", sub: "гастрономическая столица" },
+              { val: "9", label: "Объектов ЮНЕСКО", icon: "🏗️", sub: "наследие Гауди" },
+              { val: "300+", label: "Солнечных дней в году", icon: "☀️", sub: "средиземноморский климат" },
             ].map((s) => (
-              <div key={s.label} className="bg-gray1 p-7 hover:bg-gray2 transition-colors">
-                <div className="text-3xl mb-4">{s.icon}</div>
-                <div className="number-big mb-2">{s.val}</div>
-                <div className="font-body text-sm text-white/60 leading-tight mb-2">{s.label}</div>
-                <div className="font-body text-xs uppercase tracking-wider" style={{ color: "var(--gold)", opacity: 0.7 }}>{s.sub}</div>
+              <div key={s.label} style={{ background: "#161210", padding: "1.75rem", transition: "background 0.2s", cursor: "default" }}
+                onMouseOver={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#1d1612")}
+                onMouseOut={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#161210")}
+              >
+                <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{s.icon}</div>
+                <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "clamp(1.8rem, 3.5vw, 3rem)", fontWeight: 700, color: "#F4A261", lineHeight: 1, marginBottom: "0.4rem" }}>{s.val}</div>
+                <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.48)", lineHeight: 1.4, marginBottom: "0.4rem" }}>{s.label}</div>
+                <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(244,162,97,0.55)" }}>{s.sub}</div>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 bg-gray1 p-8 border border-white/10">
-            <h3 className="font-display text-xl text-white uppercase mb-6">
-              Рейтинг популярности регионов Германии
-            </h3>
-            <div className="space-y-4">
+          <div style={{ background: "#161210", padding: "2rem", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <h3 style={{ fontFamily: "'Oswald', sans-serif", fontSize: "1.25rem", color: "#fff", textTransform: "uppercase", marginBottom: "1.5rem" }}>Популярные районы среди туристов</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               {[
-                { region: "Бавария", pct: 28, color: "#E8B800" },
-                { region: "Берлин", pct: 22, color: "#CC0000" },
-                { region: "Северный Рейн-Вестфалия", pct: 18, color: "#E8B800" },
-                { region: "Гамбург", pct: 14, color: "#CC0000" },
-                { region: "Баден-Вюртемберг", pct: 11, color: "#E8B800" },
-                { region: "Прочие регионы", pct: 7, color: "#444" },
+                { region: "Готический квартал", pct: 32, color: "#E63946" },
+                { region: "Эйшампле / Саграда Фамилия", pct: 28, color: "#F4A261" },
+                { region: "Барселонета и порт", pct: 20, color: "#E63946" },
+                { region: "Грасия / Парк Гуэль", pct: 13, color: "#F4A261" },
+                { region: "Прочие районы", pct: 7, color: "#444" },
               ].map((r) => (
-                <div key={r.region} className="flex items-center gap-4">
-                  <span className="font-body text-sm text-white/60 w-52 flex-shrink-0">{r.region}</span>
-                  <div className="flex-1 bg-white/10 h-2">
-                    <div
-                      className="h-full transition-all duration-1000"
-                      style={{ width: `${r.pct}%`, background: r.color }}
-                    />
+                <div key={r.region} style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                  <span style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.84rem", color: "rgba(255,255,255,0.52)", width: 230, flexShrink: 0 }}>{r.region}</span>
+                  <div style={{ flex: 1, background: "rgba(255,255,255,0.07)", height: 8 }}>
+                    <div style={{ height: "100%", width: `${r.pct}%`, background: r.color }} />
                   </div>
-                  <span className="font-display text-sm text-white/60 w-8 text-right">{r.pct}%</span>
+                  <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.45)", width: 32, textAlign: "right" }}>{r.pct}%</span>
                 </div>
               ))}
             </div>
@@ -671,69 +487,53 @@ export default function Index() {
       </section>
 
       {/* ===== CONTACT / MAP ===== */}
-      <section id="contact" className="py-28 bg-dark">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="mb-16">
-            <p className="font-body text-gold text-sm uppercase tracking-widest mb-3">Найди нас</p>
-            <h2 className="section-title text-white">
-              КОНТАКТЫ<br /><span className="text-gold">И КАРТА</span>
-            </h2>
-          </div>
+      <section id="contact" style={{ padding: "7rem 0", background: "#0D0A08" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", color: "#F4A261", fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: "0.75rem" }}>Найди нас</p>
+          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: "clamp(2.5rem, 6vw, 5rem)", textTransform: "uppercase", color: "#fff", lineHeight: 1, marginBottom: "4rem" }}>
+            КОНТАКТЫ<br /><span style={{ color: "#E63946" }}>И КАРТА</span>
+          </h2>
 
-          <div className="grid lg:grid-cols-2 gap-10">
-            <div className="space-y-6">
-              <div className="bg-gray1 p-6 border-l-4 border-gold flex gap-4 items-start">
-                <span className="text-3xl">🏢</span>
-                <div>
-                  <div className="font-display text-white uppercase text-lg mb-1">Туристическое агентство</div>
-                  <div className="font-body text-white/50 text-sm">Germany Travel GmbH</div>
-                  <div className="font-body text-white/40 text-sm">Unter den Linden 10, 10117 Berlin</div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {[
+                { icon: "🏢", border: "#F4A261", title: "Туристический центр", lines: ["Barcelona Tourism Office", "Plaça de Catalunya 17-S, 08002 Barcelona"] },
+                { icon: "📞", border: "#E63946", title: "Телефон", lines: ["+34 932 853 832", "Пн–Пт: 9:00–20:00 CET"], highlight: 0 },
+                { icon: "✉️", border: "#F4A261", title: "Email", lines: ["info@barcelonaturisme.com"], highlight: 0 },
+              ].map((item) => (
+                <div key={item.title} style={{ background: "#161210", padding: "1.5rem", borderLeft: `4px solid ${item.border}`, display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <span style={{ fontSize: "2rem" }}>{item.icon}</span>
+                  <div>
+                    <div style={{ fontFamily: "'Oswald', sans-serif", color: "#fff", textTransform: "uppercase", fontSize: "1rem", marginBottom: "0.4rem" }}>{item.title}</div>
+                    {item.lines.map((l, i) => (
+                      <div key={i} style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: item.highlight === i ? "1.1rem" : "0.84rem", color: item.highlight === i ? "#F4A261" : "rgba(255,255,255,0.38)" }}>{l}</div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="bg-gray1 p-6 border-l-4 border-red-de flex gap-4 items-start">
-                <span className="text-3xl">📞</span>
+              ))}
+              <div style={{ background: "#161210", padding: "1.5rem", borderLeft: "4px solid #E63946", display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                <span style={{ fontSize: "2rem" }}>🌐</span>
                 <div>
-                  <div className="font-display text-white uppercase text-lg mb-1">Телефон</div>
-                  <div className="font-body text-gold text-lg">+49 30 2500 2333</div>
-                  <div className="font-body text-white/40 text-sm">Пн–Пт: 9:00–18:00 CET</div>
-                </div>
-              </div>
-              <div className="bg-gray1 p-6 border-l-4 border-gold flex gap-4 items-start">
-                <span className="text-3xl">✉️</span>
-                <div>
-                  <div className="font-display text-white uppercase text-lg mb-1">Email</div>
-                  <div className="font-body text-gold">info@germany-travel.de</div>
-                </div>
-              </div>
-              <div className="bg-gray1 p-6 border-l-4 border-red-de flex gap-4 items-start">
-                <span className="text-3xl">🌐</span>
-                <div>
-                  <div className="font-display text-white uppercase text-lg mb-1">Социальные сети</div>
-                  <div className="flex flex-wrap gap-3 mt-2">
+                  <div style={{ fontFamily: "'Oswald', sans-serif", color: "#fff", textTransform: "uppercase", fontSize: "1rem", marginBottom: "0.75rem" }}>Социальные сети</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
                     {["Instagram", "Facebook", "YouTube", "TikTok"].map((s) => (
-                      <span key={s} className="brand-pill text-xs cursor-pointer">{s}</span>
+                      <span key={s} style={{ display: "inline-flex", padding: "0.35rem 0.9rem", border: "1px solid rgba(244,162,97,0.28)", borderRadius: 50, fontFamily: "'Oswald', sans-serif", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F4A261", background: "rgba(244,162,97,0.04)", cursor: "pointer" }}>{s}</span>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="h-96 lg:h-auto min-h-72 bg-gray2 border border-white/10 overflow-hidden relative">
+            <div style={{ minHeight: 360, background: "#161210", border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden", position: "relative" }}>
               <iframe
-                title="Берлин на карте"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=13.2881927490234,52.4638023707785,13.5280227661133,52.5752520643544&layer=mapnik&marker=52.5200066,13.404954"
-                className="w-full h-full"
-                style={{ filter: "invert(90%) hue-rotate(180deg) brightness(0.85) contrast(1.1)" }}
+                title="Барселона на карте"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=2.0825958251953125,41.33792012335048,2.2275543212890625,41.42152913492024&layer=mapnik&marker=41.38879,2.15899"
+                style={{ width: "100%", height: "100%", minHeight: 360, filter: "invert(88%) hue-rotate(180deg) brightness(0.9) contrast(1.1)" }}
               />
-              <div className="absolute bottom-4 right-4">
-                <a
-                  href="https://www.openstreetmap.org/?mlat=52.52&mlon=13.4049#map=12/52.52/13.4049"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gold text-black font-display text-xs uppercase tracking-wider px-4 py-2 hover:brightness-110 transition-all"
-                >
-                  Открыть карту →
-                </a>
+              <div style={{ position: "absolute", bottom: 16, right: 16 }}>
+                <a href="https://www.openstreetmap.org/?mlat=41.38879&mlon=2.15899#map=13/41.38879/2.15899" target="_blank" rel="noopener noreferrer"
+                  style={{ background: "#E63946", color: "#fff", fontFamily: "'Oswald', sans-serif", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.1em", padding: "0.5rem 1rem", textDecoration: "none", display: "inline-block" }}
+                >Открыть карту →</a>
               </div>
             </div>
           </div>
@@ -741,43 +541,39 @@ export default function Index() {
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="bg-black border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="de-flag-line mb-10">
-            <span /><span /><span />
+      <footer style={{ background: "#080604", borderTop: "1px solid rgba(255,255,255,0.07)", padding: "3rem 0" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 1.5rem" }}>
+          <div style={{ display: "flex", height: 4, marginBottom: "2.5rem" }}>
+            <div style={{ flex: 1, background: "#C60B1E" }} />
+            <div style={{ flex: 1, background: "#F1BF00" }} />
+            <div style={{ flex: 1, background: "#C60B1E" }} />
           </div>
 
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: "2rem" }}>
             <div>
-              <div className="font-display text-3xl font-bold tracking-widest uppercase mb-2">
-                <span className="text-white">DEUTSCH</span>
-                <span className="text-gold">LAND</span>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: "2rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+                <span style={{ color: "#fff" }}>BARCE</span><span style={{ color: "#E63946" }}>LONA</span>
               </div>
-              <p className="font-body text-sm text-white/30">
-                Туристический гид по Германии — культура, история, автомобили
-              </p>
+              <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.84rem", color: "rgba(255,255,255,0.22)" }}>Туристический гид — Каталония, Испания</p>
             </div>
-
-            <div className="flex flex-wrap gap-4">
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
               {NAV_ITEMS.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollTo(item.id)}
-                  className="font-body text-xs text-white/40 hover:text-gold transition-colors uppercase tracking-wider"
-                >
-                  {item.label}
-                </button>
+                <button key={item.id} onClick={() => scrollTo(item.id)} style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.75rem",
+                  color: "rgba(255,255,255,0.28)", textTransform: "uppercase",
+                  letterSpacing: "0.1em", transition: "color 0.2s",
+                }}
+                  onMouseOver={(e) => (e.currentTarget.style.color = "#F4A261")}
+                  onMouseOut={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.28)")}
+                >{item.label}</button>
               ))}
             </div>
           </div>
 
-          <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4">
-            <p className="font-body text-xs text-white/20">
-              © 2024 Deutschland Guide. Туристический информационный портал.
-            </p>
-            <p className="font-body text-xs text-white/20">
-              🇩🇪 Германия · Европа · Мир
-            </p>
+          <div style={{ marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "1rem" }}>
+            <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.14)" }}>© 2024 Barcelona Guide. Туристический информационный портал.</p>
+            <p style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.14)" }}>🇪🇸 Барселона · Каталония · Испания</p>
           </div>
         </div>
       </footer>
